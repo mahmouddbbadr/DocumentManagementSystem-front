@@ -1,0 +1,7 @@
+button{
+  background-color: azure;
+}
+.pages{
+  display: flex;
+  justify-content: center;
+}

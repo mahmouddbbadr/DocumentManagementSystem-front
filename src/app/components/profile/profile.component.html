@@ -1,0 +1,35 @@
+
+<div class="containter" style="margin-left: 20px;" >
+  @if(user){
+    <p style="font-weight: bold; font-size: 40px; margin-top: 50px; margin-left: 30px;">Hello, {{(user.userName.split('@'))[0]}}</p>
+
+  }
+  <p></p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">User-Id</th>
+        <th scope="col" >UserName</th>
+        <th scope="col">Email</th>
+        <th scope="col">National-Id</th>
+        <th scope="col">Address</th>
+        <th scope="col">PhoneNumber</th>
+        <th scope="col">WorkSpaceName</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if(user){
+        <tr>
+          <td>{{user.userId}}</td>
+          <td>{{(user.userName.split('@'))[0]}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.nId}}</td>
+          <td>{{user.address}}</td>
+          <td>{{user.phoneNumber}}</td>
+          <td>{{user.workSpaceName}}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+

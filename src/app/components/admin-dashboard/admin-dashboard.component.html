@@ -1,0 +1,97 @@
+
+<div class="containter mx-3" >
+  <br>
+  <br>
+  <h3>Admin-dashboard/{{userType}}</h3>
+  <span style="width: 350px; display: flex; gap: 5px;" class="form-inline my-2 my-lg-0" >
+    <input class="form-control mr-sm-2" type="text" (ngModelChange)="onSearch($event)" [(ngModel)]="searchTerm" placeholder="Search in users" >
+  </span>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">User-Id</th>
+        <th scope="col" >UserName</th>
+        <th scope="col">Email</th>
+        <th scope="col">National-Id</th>
+        <th scope="col">Address</th>
+        <th scope="col">PhoneNumber</th>
+        <th scope="col">WorkSpaceName</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(user of filteredUsers; track user.userId; let index = $index){
+        <tr>
+          <td>{{index+1}}</td>
+          <td class="hover" (click)="getUserDirectories(user)">{{user.userId}}</td>
+          <td>{{(user.userName.split('@'))[0]}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.nId}}</td>
+          <td>{{user.address}}</td>
+          <td>{{user.phoneNumber}}</td>
+          <td>{{user.workSpaceName}}</td>
+          <td>
+            <svg *ngIf="!user.isLocked" (click)="showBlockPupUp(user)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ban" viewBox="0 0 16 16">
+              <path d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0"/>
+            </svg>
+            <svg *ngIf="user.isLocked" (click)="showUnBlockPupUp(user)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
+              <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2M3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1z"/>
+            </svg>
+          </td>
+        </tr>
+      }@empty {
+        <tr>
+          <td scope="row">1</td>
+          <td>no data to show</td>
+          <td>no data to show</td>
+          <td>no data to show</td>
+          <td>no data to show</td>
+          <td>no data to show</td>
+          <td>no data to show</td>
+          <td>no data to show</td>
+          <td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <app-pagination
+  (goPrev)="goPrevious()"
+  (goNext)="goNext()"
+  (goPage)="goToPage($event)"
+  [page]="page"
+  [totalPages]="totalPages"
+  [pageSize]="pageSize"
+  [totalRecords]="totalRecords"
+  ></app-pagination>
+</div>
+
+
+<div>
+  <div class="overlay" *ngIf="blockPopUpFlag === true">
+    <div class="content">
+      <div class="mb-3">
+        Are show sure you want to block this user?
+      </div>
+      <div class="actionButtons">
+        <button type="submit" class="btn btn-danger" style="width: 115px; margin-left: 5px; " (click)="blockUser()" > Block </button>
+        <button type="submit" class="btn btn-secondary" style="width: 60px; margin-left: 5px;" (click)="closePop()" > Close </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div>
+  <div class="overlay" *ngIf="unBlockPopUpFlag === true">
+    <div class="content" >
+      <div class="mb-3">
+        Are show sure you want to unblock this user?
+      </div>
+      <div class="actionButtons">
+        <button type="submit" class="btn btn-danger" style="width: 115px; margin-left: 5px; " (click)="unBlockUser()" > Unblock </button>
+        <button type="submit" class="btn btn-secondary" style="width: 60px; margin-left: 5px;" (click)="closePop()" > Close </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+
+<div class="containter mx-3">
+  <br>
+  <h3>{{email.split('@')[0]}}/{{directoryName}}</h3>
+  <span style="width: 350px; display: flex; gap: 5px;" class="form-inline my-2 my-lg-0" >
+    <input class="form-control mr-sm-2" type="text" (ngModelChange)="onSearch($event)" [(ngModel)]="searchTerm" placeholder="Search in documents" >
+  </span>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col" >Name</th>
+        <th scope="col" >Extention</th>
+        <th scope="col">Uploaded-At</th>
+        <th scope="col"> Size</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(document of filterdDocuments; track document.id; let index = $index){
+        <tr>
+          <td scope="row">{{index+1}}</td>
+          <td class="hover" (click)="open(document)">
+            <a style="text-decoration: none;">{{document.name.split('.')[0]}}</a>
+          </td>
+          <td>{{document.extention}}</td>
+          <td>{{document.uploadedAt | date:'dd-MM-yyyy hh:mm' }}</td>
+          <td>{{document.size}}
+
+        </tr>
+      }@empty {
+        <tr>
+          <td scope="row">1</td>
+          <td>no data to show</td>
+          <td>no data to show</td>
+          <td>no data to show</td>
+          <td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <app-pagination
+  (goPrev)="goPrevious()"
+  (goNext)="goNext()"
+  (goPage)="goToPage($event)"
+  [page]="page"
+  [totalPages]="totalPages"
+  [pageSize]="pageSize"
+  [totalRecords]="totalRecords"
+  ></app-pagination>
+</div>

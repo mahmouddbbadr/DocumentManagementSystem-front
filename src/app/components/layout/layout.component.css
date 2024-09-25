@@ -1,0 +1,28 @@
+@media screen and (min-width: 992px) {
+  .navbar-dark.bg-primary {
+    background-color: #c9d3e3 !important; /* Replace with your desired color */
+  }
+.emailIcon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgb(220 216 216);
+  border-radius: 50%;
+  width: 95px;
+  height: 95px;
+  margin-left: 25px;
+  margin-bottom: 15px;
+}
+.emailText{
+  width: 200px;
+  height: 100px;
+  text-align: center;
+  margin-top: 78px;
+  font-size: 78px;
+  color: black;
+  font-weight: bold;
+}
+
+
+}

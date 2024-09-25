@@ -1,0 +1,53 @@
+
+<div class="containter">
+  <div class="background">
+    <div class="gradient-overlay"></div>
+  </div>
+
+  <div class="form-container">
+    <div class="slider-container">
+      <div class="slider"></div>
+    </div>
+    <div class="form-switcher">
+      <button id="loginBtn" class="active">Login</button>
+      <button id="signupBtn" routerLink='/register'>Register</button>
+    </div>
+
+    <div class="form-wrapper">
+      <form [formGroup]="loginForm" id="loginForm" class="active" (ngSubmit)="onSubmit()">
+        <h2 style="font-weight: bold;">Login</h2>
+        <div class="input-group">
+          <input type="email" id="Email"  formControlName="Email" name="Email" email pattern="[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}" required>
+          <label for="Email">E-Mail</label>
+          @if ( this.loginForm.controls.Email.errors?.["required"]&&this.loginForm.controls.Email.touched ) {
+            <div class="warnings">
+              Email is required
+            </div>
+          }
+          @if (this.loginForm.controls.Email.errors?.["pattern"]) {
+            <div class="warnings">
+              Please enter a valid email address.
+            </div>
+          }
+        </div>
+
+
+        <div class="input-group">
+          <input type="password" id="Password" formControlName="Password" name="password" required>
+          <label for="Password">Password</label>
+          @if ( this.loginForm.controls.Password.errors?.["required"]&&this.loginForm.controls.Password.touched ) {
+            <div class="warnings">
+              Password is required
+            </div>
+          }
+
+        </div>
+        <button type="submit" class="btn" [disabled]="loginForm.invalid">Login</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+
+

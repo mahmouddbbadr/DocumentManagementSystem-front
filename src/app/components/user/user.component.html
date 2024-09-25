@@ -1,0 +1,41 @@
+<div class="containter mx-3">
+  <br>
+  <h3>UserName: {{email.split('@')[0]}}</h3>
+  <span style="width: 350px; display: flex; gap: 5px;" class="form-inline my-2 my-lg-0" >
+    <input class="form-control mr-sm-2" type="text" (ngModelChange)="onSearch($event)" [(ngModel)]="searchTerm" placeholder="Search in folders" >
+  </span>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col" >Name</th>
+        <th scope="col">Privacy</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(directory of filterdDirectories; track directory.id; let index = $index){
+        <tr>
+          <td scope="row">{{index+1}}</td>
+          <td class="hover" (click)="openDirectory(directory)">{{directory.name}}</td>
+          <td>{{directory.isPrivate? 'Private' : 'Public'}}</td>
+        </tr>
+      }@empty {
+        <tr>
+          <td scope="row">1</td>
+          <td>no data to show</td>
+          <td>no data to show</td>
+          <td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <app-pagination
+  (goPrev)="goPrevious()"
+  (goNext)="goNext()"
+  (goPage)="goToPage($event)"
+  [page]="page"
+  [totalPages]="totalPages"
+  [pageSize]="pageSize"
+  [totalRecords]="totalRecords"
+  ></app-pagination>
+</div>

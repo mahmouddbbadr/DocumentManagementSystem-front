@@ -1,0 +1,172 @@
+<div class="containter mx-3" >
+  <br>
+  <h3>{{workSpaceName}}\{{directoryName}}</h3>
+  <span style="width: 350px; display: flex; gap: 5px;" class="form-inline my-2 my-lg-0" >
+    <input class="form-control mr-sm-2" type="text" (ngModelChange)="onSearch($event)" [(ngModel)]="searchTerm" placeholder="Search in documents" >
+  </span>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col" >Name
+            <svg (click)="sortNameAscending()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-up" viewBox="0 0 16 16">
+              <path d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z"/>
+            </svg>
+            <svg (click)="sortNameDescending()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-down" viewBox="0 0 16 16">
+              <path d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 11.293zm3.5 1a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z"/>
+            </svg>
+        </th>
+        <th scope="col" >Extention</th>
+        <th scope="col">Uploaded-At
+            <svg (click)="sortDateAscending()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-up" viewBox="0 0 16 16">
+              <path d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z"/>
+            </svg>
+            <svg (click)="sortDateDescending()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-down" viewBox="0 0 16 16">
+              <path d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 11.293zm3.5 1a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z"/>
+            </svg>
+        </th>
+        <th scope="col"> Size
+            <svg (click)="sortSizeAscending()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-up" viewBox="0 0 16 16">
+              <path d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z"/>
+            </svg>
+            <svg (click)="sortSizeDescending()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-down" viewBox="0 0 16 16">
+              <path d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 11.293zm3.5 1a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z"/>
+            </svg>
+        </th>
+        <th scope="col" style="align-items: right;"> Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(document of filterdDocuments; track document.id; let index = $index){
+        <tr>
+          <td scope="row">{{index+1}}</td>
+          <td class="hover" (click)="open(document)">
+            <a style="text-decoration: none;">{{document.name.split('.')[0]}}</a>
+          </td>
+          <td>{{document.extention}}</td>
+          <td>{{document.uploadedAt | date:'dd-MM-yyyy hh:mm' }}</td>
+          <td>{{document.size}}
+          <td>
+            <div class="icons">
+              <svg xmlns="http://www.w3.org/2000/svg" (click)="showEditFlag(document)" style="margin-right: 10px;" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z"/>
+              </svg>
+              <svg اxmlns="http://www.w3.org/2000/svg" (click)="showDownloadPopUp(document)" style="margin-right: 10px;" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" (click)="showDeleteFlag(document)" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+              </svg>
+
+            </div>
+          </td>
+        </tr>
+      }@empty {
+        <tr>
+          <td scope="row">1</td>
+          <td>no data to show</td>
+          <td>no data to show</td>
+          <td>no data to show</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <button class="btn btn-outline-success my-1 mb-2"  type="button" (click)="showAddPupUp()">Add New Document</button>
+  <br>
+  <app-pagination
+  (goPrev)="goPrevious()"
+  (goNext)="goNext()"
+  (goPage)="goToPage($event)"
+  [page]="page"
+  [totalPages]="totalPages"
+  [pageSize]="pageSize"
+  [totalRecords]="totalRecords"
+  ></app-pagination>
+</div>
+
+
+<div class="addDocument">
+  <div class="overlay" *ngIf="addPopUpFlag === true">
+    <div class="content" >
+      <form [formGroup]="addForm" id="popForm" class="active" >
+        <h2>Add Document</h2>
+        <div class="input-group">
+          <div class="d-flex gap-2 mb-1">
+            <label for="File">File</label>
+            <input type="file" id="File" (change)="onFileSelected($event)" #fileUpload required >
+          </div>
+          <div class="d-flex gap-2">
+            <label for="Tags">Tag</label>
+            <input type="test" id="Tags"  formControlName="Tags" name="Tag" required >
+          </div>
+        </div>
+      </form>
+
+      <div class="actionButtons mt-2">
+        <button type="submit" class="btn btn-success" style="width: 115px;" (click)="addDocument($event)" [disabled]="addForm.invalid" >Add</button>
+        <button
+        type="submit" class="btn btn-secondary" style="width: 60px; margin-left: 5px;" (click)="closePop()" > Close </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="editDirectory">
+  <div class="overlay" *ngIf="editPopUpFlag === true">
+    <div class="content" style="height: 230px;">
+      <form [formGroup]="editForm" id="popForm" class="active">
+        <h2>Edit</h2>
+        <div class="input-group">
+          <label for="Name">Name</label>
+          <input type="text" id="Name" formControlName="Name" value="directory.name" name="Name" required style="margin-left: 10px;">
+        </div>
+      </form>
+      <br>
+      <div class="actionButtons">
+        <button type="submit" class="btn btn-success" (click)="editDocument()" style="width: 115px;" [disabled]="editForm.invalid">Save</button>
+        <button
+          type="submit" class="btn btn-secondary" style="width: 60px; margin-left: 5px;" (click)="closePop()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="downloadDirectory">
+  <div class="overlay" *ngIf="downloadPopUpFlag === true">
+    <div class="content">
+      <h2>Download</h2>
+      <div class="mb-3">
+        Are show sure you want to download document??
+      </div><div class="actionButtons">
+        <button type="submit" class="btn btn-success" style="width: 115px; margin-left: 5px;" (click)="downloadDocument()" > Download </button>
+        <button type="submit" class="btn btn-secondary" style="width: 60px; margin-left: 5px;" (click)="closePop()" > Close </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="deleteDirectory">
+  <div class="overlay" *ngIf="deletePopUpFlag === true">
+    <div class="content" >
+      <h2>Delete</h2>
+      <div class="mb-3">
+        Are show sure you want to delete document?
+      </div>
+      <div class="actionButtons">
+        <button type="submit" class="btn btn-danger" style="width: 115px; margin-left: 5px;" (click)="deleteDocument()" > Delete </button>
+        <button type="submit" class="btn btn-secondary" style="width: 60px; margin-left: 5px;" (click)="closePop()" > Close </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
